@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PostComment.Domain\PostComment.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -6,12 +6,14 @@ public class Post
     public string Author { get; }
     public string Title { get; private set; }
     public string Content { get; private set; }
+    public IList<string> Images { get; set; }
 
     private Post(string author, string title, string content)
     {
         Author = author;
         Title = title;
         Content = content;
+        Images = new List<string>();
     }
 
     public static Post Create(string author, string title, string content)
@@ -20,5 +22,5 @@ public class Post
         return new Post(author, title, content);
     }
     
-    
+        
 }

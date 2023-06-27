@@ -1,3 +1,6 @@
+using Moq;
+using PostComment.Infrastructure.Repositories;
+using PostComment.Infrastructure.Repositories.PostRepository;
 using PostCommentSession.Domain.Entities;
 
 namespace PostComment.Test;
@@ -9,7 +12,7 @@ public class PostTests
     // T2: Scenario - what we're testing
     // T3: Expect outcome - what we expect the logical component to do
     [Fact]
-    public void Post_CreateAPost_ShouldCreateAPost()
+    public void Post_CreateAPost_ShouldCreateAPostWithoutRepository()
     {
         // Arrange
         var author = "Messi";
@@ -23,5 +26,26 @@ public class PostTests
         Assert.Equal(author, post.Author);
         Assert.Equal(title, post.Title);
         Assert.Equal(content, post.Content);
+    }
+
+    [Fact]
+    public async Task Post_CreateAPostRepository_ShouldCreateAPostUsingRepository()
+    {
+        var postMock = new Mock<IPostRepository>();
+
+        var author = "Messi";
+        var title = "The Laws of Physics";
+        var content = "Text/Content of the post...";
+
+        // Deveria ser uma DTO?
+        var postRequest = Post.Create(author, title, content);
+        postMock.Setup(p => p.GetById(postRequest.Id)).ReturnsAsync(postRequest);
+        
+        var repository = postMock.Object;
+        await repository.Create(postRequest);
+        
+        var postResponse = await repository.GetById(postRequest.Id);
+        
+        Assert.Equal(postRequest, postResponse);
     }
 }
