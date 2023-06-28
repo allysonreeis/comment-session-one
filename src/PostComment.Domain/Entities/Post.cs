@@ -6,7 +6,8 @@ public class Post
     public string Author { get; }
     public string Title { get; private set; }
     public string Content { get; private set; }
-    public IList<string> Images { get; set; }
+    public IList<string> Images { get; private set; }
+    public DateTime CreatedAt { get; }
 
     private Post(string author, string title, string content)
     {
@@ -14,6 +15,7 @@ public class Post
         Title = title;
         Content = content;
         Images = new List<string>();
+        CreatedAt = DateTime.UtcNow;
     }
 
     public static Post Create(string author, string title, string content)

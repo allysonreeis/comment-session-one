@@ -12,7 +12,7 @@ public class PostTests
     // T2: Scenario - what we're testing
     // T3: Expect outcome - what we expect the logical component to do
     [Fact]
-    public void Post_CreateAPost_ShouldCreateAPostWithoutRepository()
+    public void Post_CreateAPost_ShouldInstantiateAPost()
     {
         // Arrange
         var author = "Messi";
@@ -21,8 +21,11 @@ public class PostTests
 
         // Act
         var post = Post.Create(author, title, content);
-        
+
         // Assert
+        Assert.NotNull(post);
+        Assert.NotEqual(default(Guid), post.Id);
+        Assert.NotEqual(default(DateTime), post.CreatedAt);
         Assert.Equal(author, post.Author);
         Assert.Equal(title, post.Title);
         Assert.Equal(content, post.Content);
