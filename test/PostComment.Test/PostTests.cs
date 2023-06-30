@@ -2,6 +2,7 @@ using Moq;
 using PostComment.Infrastructure.Repositories;
 using PostComment.Infrastructure.Repositories.PostRepository;
 using PostCommentSession.Domain.Entities;
+using PostCommentSession.Domain.Exceptions;
 
 namespace PostComment.Test;
 
@@ -50,5 +51,22 @@ public class PostTests
         var postResponse = await repository.GetById(postRequest.Id);
         
         Assert.Equal(postRequest, postResponse);
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData(null)]
+    [InlineData("   ")]
+    public void Post_CreateAPost_ShouldThrowErrorWhenTitleIsNullOrEmpty(string? title)
+    {
+        //Arrange
+        // Action action = ()=>Post.Create("Neymar", title, "Some contente here...");
+        void action() => Post.Create("Neymar", title, "Some contente here...");
+        
+        //Act
+        var exception = Assert.Throws<EntityValidationException>(action);
+        
+        //Assert
+        Assert.Equal("Title should not be null or empty", exception.Message);
     }
 }

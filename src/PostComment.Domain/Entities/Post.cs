@@ -1,4 +1,6 @@
-﻿namespace PostCommentSession.Domain.Entities;
+﻿using PostCommentSession.Domain.Exceptions;
+
+namespace PostCommentSession.Domain.Entities;
 
 public class Post
 {
@@ -18,11 +20,20 @@ public class Post
         CreatedAt = DateTime.UtcNow;
     }
 
+    // Keep the Entity state consistent and avoid problems like breaking clients that use this object 
     public static Post Create(string author, string title, string content)
     {
-        
-        return new Post(author, title, content);
+        var post = new Post(author, title, content);
+        post.Validate();
+        return post;
     }
-    
+
+    private void Validate()
+    {
+        if (string.IsNullOrEmpty(Title) || string.IsNullOrWhiteSpace(Title))
+        {
+            throw new EntityValidationException($"{nameof(Title)} should not be null or empty");
+        }
+    }
         
 }
