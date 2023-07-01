@@ -1,10 +1,10 @@
 ﻿using PostCommentSession.Domain.Exceptions;
+using PostCommentSession.Domain.SeedWork;
 
 namespace PostCommentSession.Domain.Entities;
 
-public class Post
+public class Post : AggregateRoot
 {
-    public Guid Id { get; } = Guid.NewGuid();
     public string Author { get; }
     public string Title { get; private set; }
     public string Content { get; private set; }
