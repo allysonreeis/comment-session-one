@@ -1,13 +1,19 @@
 using Moq;
 using PostComment.Infrastructure.Repositories;
 using PostComment.Infrastructure.Repositories.PostRepository;
+using PostComment.Test.Common;
 using PostCommentSession.Domain.Entities;
 using PostCommentSession.Domain.Exceptions;
 
 namespace PostComment.Test;
 
+[Collection(nameof(PostTestFixture))]
 public class PostTests
 {
+    private readonly PostTestFixture _postTestFixture;
+
+    public PostTests(PostTestFixture postTestFixture) => _postTestFixture = postTestFixture;
+
     // Test name pattern T1_T2_T3
     // T1: SUT - System under test - logical component we're testing
     // T2: Scenario - what we're testing

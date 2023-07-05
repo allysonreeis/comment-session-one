@@ -5,7 +5,7 @@ namespace PostCommentSession.Domain.Entities;
 
 public class Post : AggregateRoot
 {
-    public string Author { get; }
+    public string Author { get; private set; }
     public string Title { get; private set; }
     public string Content { get; private set; }
     public IList<string> Images { get; private set; }
@@ -26,6 +26,16 @@ public class Post : AggregateRoot
         var post = new Post(author, title, content);
         post.Validate();
         return post;
+    }
+
+    public void Update(string author, string title, string content, IList<string> images)
+    {
+        Author = author;
+        Title = title;
+        Content = content;
+        Images = images; // atention to this
+        
+        Validate();
     }
 
     private void Validate()
