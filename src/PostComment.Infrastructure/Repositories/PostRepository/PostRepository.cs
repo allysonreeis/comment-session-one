@@ -1,4 +1,6 @@
 ﻿using PostCommentSession.Domain.Entities;
+using PostCommentSession.Domain.Entities.PostAggregate;
+using PostCommentSession.Domain.Repository;
 
 namespace PostComment.Infrastructure.Repositories.PostRepository;
 
@@ -14,7 +16,7 @@ public class PostRepository : IPostRepository
         throw new NotImplementedException();
     }
 
-    public Task Create(Post post)
+    public Task Insert(Post post, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

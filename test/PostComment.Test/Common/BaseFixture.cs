@@ -8,6 +8,6 @@ public abstract class BaseFixture
 
     protected BaseFixture()
     {
-        Faker = new Faker("pt_br");
+        Faker = new Faker("pt_BR");
     }
 }

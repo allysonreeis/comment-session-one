@@ -1,5 +1,6 @@
 ﻿using PostComment.Test.Common;
 using PostCommentSession.Domain.Entities;
+using PostCommentSession.Domain.Entities.PostAggregate;
 
 namespace PostComment.Test;
 

@@ -13,6 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\PostComment.Application\PostComment.Application.csproj" />
       <ProjectReference Include="..\PostComment.Infrastructure\PostComment.Infrastructure.csproj" />
     </ItemGroup>
 

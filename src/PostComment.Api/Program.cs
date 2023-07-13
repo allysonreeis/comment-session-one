@@ -1,5 +1,6 @@
 using PostComment.Infrastructure.Repositories;
 using PostComment.Infrastructure.Repositories.PostRepository;
+using PostCommentSession.Domain.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 

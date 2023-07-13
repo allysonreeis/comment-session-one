@@ -3,7 +3,9 @@ using PostComment.Infrastructure.Repositories;
 using PostComment.Infrastructure.Repositories.PostRepository;
 using PostComment.Test.Common;
 using PostCommentSession.Domain.Entities;
+using PostCommentSession.Domain.Entities.PostAggregate;
 using PostCommentSession.Domain.Exceptions;
+using PostCommentSession.Domain.Repository;
 
 namespace PostComment.Test;
 
@@ -52,7 +54,7 @@ public class PostTests
         postMock.Setup(p => p.GetById(postRequest.Id)).ReturnsAsync(postRequest);
         
         var repository = postMock.Object;
-        await repository.Create(postRequest);
+        await repository.Insert(postRequest, CancellationToken.None);
         
         var postResponse = await repository.GetById(postRequest.Id);
         

@@ -1,14 +1,14 @@
 ﻿using PostCommentSession.Domain.Exceptions;
 using PostCommentSession.Domain.SeedWork;
 
-namespace PostCommentSession.Domain.Entities;
+namespace PostCommentSession.Domain.Entities.PostAggregate;
 
 public class Post : AggregateRoot
 {
     public string Author { get; private set; }
     public string Title { get; private set; }
     public string Content { get; private set; }
-    public IList<string> Images { get; private set; }
+    // public IList<string> Images { get; private set; }
     public DateTime CreatedAt { get; }
 
     private Post(string author, string title, string content)
@@ -16,7 +16,7 @@ public class Post : AggregateRoot
         Author = author;
         Title = title;
         Content = content;
-        Images = new List<string>();
+        // Images = new List<string>();
         CreatedAt = DateTime.UtcNow;
     }
 
@@ -33,7 +33,7 @@ public class Post : AggregateRoot
         Author = author;
         Title = title;
         Content = content;
-        Images = images; // atention to this
+        // Images = images; // atention to this
         
         Validate();
     }
