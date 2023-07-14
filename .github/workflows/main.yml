@@ -1,0 +1,14 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  tests:
+    name: Unit Testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+      - run: dotnet test
