@@ -5,9 +5,7 @@ namespace PostCommentSession.Domain.Repository;
 
 public interface IPostRepository
 {
-    Task<IList<Post>> Get();
     Task<Post?> GetById(Guid id);
-    Task Insert(Post post, CancellationToken cancellationToken);
-    Task Delete(Guid id);
-    Task Update(Post post);
+    void Insert(Post post, CancellationToken cancellationToken);
+   
 }

@@ -6,6 +6,7 @@ namespace PostComment.Infrastructure.Repositories.PostRepository;
 
 public class PostRepository : IPostRepository
 {
+    private IList<Object> lista = new List<object>();
     public Task<IList<Post>> Get()
     {
         throw new NotImplementedException();
@@ -16,18 +17,9 @@ public class PostRepository : IPostRepository
         throw new NotImplementedException();
     }
 
-    public Task Insert(Post post, CancellationToken cancellationToken)
+    public void Insert(Post post, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        lista.Add(post);
     }
-
-    public Task Delete(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task Update(Post post)
-    {
-        throw new NotImplementedException();
-    }
+    
 }
