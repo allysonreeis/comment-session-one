@@ -1,7 +1,9 @@
-﻿namespace PostComment.Application.UseCases.PostUseCase.CreatePost;
+﻿using MediatR;
+
+namespace PostComment.Application.UseCases.PostUseCase.CreatePost;
 
 public record CreatePostInput(
     string Author,
     string Title,
     string Content
-);
+) : IRequest<CreatePostOutput>;

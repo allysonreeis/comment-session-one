@@ -1,9 +1,10 @@
-﻿using PostCommentSession.Domain.Entities.PostAggregate;
+﻿using MediatR;
+using PostCommentSession.Domain.Entities.PostAggregate;
 using PostCommentSession.Domain.Repository;
 
 namespace PostComment.Application.UseCases.PostUseCase.CreatePost;
 
-public class CreatePostUseCase
+public class CreatePostUseCase : IRequestHandler<CreatePostInput, CreatePostOutput>
 {
     private readonly IPostRepository _postRepository;
 
